@@ -11,6 +11,11 @@ java {
 	sourceCompatibility = '11'
 }
 
+jar { // 파일명은 oauth-app-1.0.jar 가 됨
+	archiveBaseName = 'oauth-app'  // JAR 파일의 기본 이름
+	archiveVersion = '1.0'         // JAR 파일의 버전
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

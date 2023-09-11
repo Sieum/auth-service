@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  oauth:
+    image: dhtmdrl2004/oauth-app-image
+    ports:
+      - "7979:7979"
+
+
+
+
+#version: '3'  # 도커 컴포즈 파일 버전 (보통 2 또는 3을 사용)
+#
+#services:  # 컨테이너 정의 시작
+#  web:  # 컨테이너 이름
+#    image: nginx:latest  # 사용할 도커 이미지 (예: Nginx)
+#    ports:
+#      - "80:80"  # 호스트 포트:컨테이너 포트 매핑
+#  app:
+#    build:
+#      context: ./myapp  # 컨텍스트 경로 (Dockerfile이 있는 디렉토리)
+#    ports:
+#      - "5000:5000"
+#    volumes:
+#      - ./myapp:/app  # 호스트 디렉토리와 컨테이너 디렉토리를 공유
+#
+#networks:  # 컨테이너 간 통신을 위한 네트워크 정의
+#  mynet:
