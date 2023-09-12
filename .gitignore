@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 .gitmessage.txt
-
+.env
 ### STS ###
 .apt_generated
 .classpath

@@ -44,6 +44,8 @@ dependencies {
     implementation 'com.auth0:java-jwt:4.2.1'
     //JSON
     implementation("com.vladmihalcea:hibernate-types-55:2.20.0")
+    //H2
+    runtimeOnly 'com.h2database:h2';
 }
 
 dependencyManagement {
