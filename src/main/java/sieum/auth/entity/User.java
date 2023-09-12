@@ -15,49 +15,46 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "members")
-@TypeDef(name = "json", typeClass = JsonType.class)
+//@TypeDef(name = "json", typeClass = JsonType.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class User extends BaseEntity {
     @Id
-    @Column(name = "user_id", columnDefinition = "BINARY(16)")
+    @Column(name = "member_id", columnDefinition = "BINARY(16)")
     @Builder.Default
     private UUID id = UUID.randomUUID();
 
-    @Column(nullable = false)
-    private String spotifyId;
-
-    @Column(nullable = false)
+    @Column(name = "member_spotify_user_id", nullable = false)
     private String socialId;
 
-    @Column
+    @Column(name = "member_profile_music_uri")
     private String profileMusicUri;
 
-    @Column(nullable = false)
+    @Column(name = "member_nickname", nullable = false)
     private String nickname;
 
-    @Column
+    @Column(name = "member_profile_image_url")
     private String profileImageUrl;
 
-    @Column
+    @Column(name = "member_album_image_url")
     private String albumImageUrl;
 
-    @Column
+    @Column(name = "member_album_artist")
     private String albumArtist;
 
-    @Column
+    @Column(name = "member_album_title")
     private String albumTitle;
 
-    @Column
+    @Column(name = "member_region_code")
     private String regionCode;
 
-    @Column
+    @Column(name = "member_refresh_token")
     private String refreshToken;
 
-    @Type(type="json")
-    @Column
-    private Map<String, String> hashTag;
+//    @Type(type="json")
+//    @Column
+//    private Map<String, String> hashTag;
 
     public void updateName(String nickname){
         this.nickname = nickname;
