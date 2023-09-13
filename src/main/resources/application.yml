@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: jdbc:h2:mem:test
+    username: test
+    password:
+    driver-class-name: org.h2.Driver
+
+  servlet:
+    multipart:
+      max-file-size: 25MB
+
+  jpa:
+    #database: mysql
+    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 1000
+
+  #oauth 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          spotify:
+            provider: spotify
+            client-id: ${SPOTIFY_KEY}
+            client-secret: ${SPOTIFY_SECRET}
+            scope: user-read-email,user-read-private
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/oauth2/callback/spotify
+
+        provider:
+          spotify:
+            authorization-uri: https://accounts.spotify.com/authorize
+            token-uri: https://accounts.spotify.com/api/token
+            user-info-uri: https://api.spotify.com/v1/me
+            user-name-attribute: id
+
+  #Swaager 사용에 필요
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    root: info
+
+jwt:
+  secretKey: ${JWT_PWD}
+
+  access:
+    expiration: 3600000 # ms -> 1시간
+    header: Authorization
+
+  refresh:
+    expiration: 1209600000 #  ms -> 2주
+    header: Authorization-refresh
+
+  redirect:
+    ${REACT_NATIVE_REDIRECT}
