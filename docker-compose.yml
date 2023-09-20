@@ -2,7 +2,9 @@ version: '3'
 
 services:
   oauth:
+    container_name: oauth
     image: dhtmdrl2004/oauth-app-image
+    command: sleep infinity
     ports:
       - "7979:7979"
 
