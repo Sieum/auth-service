@@ -4,19 +4,30 @@ server:
 spring:
   config:
     import: optional:file:.env[.properties]
+  redis:
+    host: localhost
+    port: 6379
   datasource:
-    url: jdbc:h2:mem:test
-    username: test
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_ID}
+    password: ${DB_PWD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 10
+      connection-timeout: 10000
+      connection-init-sql: SELECT 1
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      auto-commit: true
 
   servlet:
     multipart:
       max-file-size: 25MB
 
   jpa:
-    #database: mysql
-    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
     properties:
@@ -35,7 +46,7 @@ spring:
             client-secret: ${SPOTIFY_SECRET}
             scope: user-read-email,user-read-private
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/oauth2/callback/spotify
+            redirect-uri: http://70.12.114.93:8080/oauth2/callback/spotify
 
         provider:
           spotify:
@@ -57,7 +68,7 @@ jwt:
   secretKey: ${JWT_PWD}
 
   access:
-    expiration: 3600000 # ms -> 1시간
+    expiration: 1 # ms -> 1시간
     header: Authorization
 
   refresh:
